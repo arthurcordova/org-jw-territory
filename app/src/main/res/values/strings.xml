@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">JW Territory</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Home</string>
+
+    <string name="title_notifications">Notifications</string>
+
+    <string name="label_map">Mapa</string>
+    <string name="label_territories">Territórios</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

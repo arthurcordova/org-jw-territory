@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "676271537781",
+    "firebase_url": "https://jw-territory-tracker.firebaseio.com",
+    "project_id": "jw-territory-tracker",
+    "storage_bucket": "jw-territory-tracker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676271537781:android:694ac18e5cf48bf9",
+        "android_client_info": {
+          "package_name": "org.jw.territory"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "676271537781-30lfl42aionnvikruq5lauqh5hccj3se.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.jw.territory",
+            "certificate_hash": "702837a898af5731034587d97dee581ea0da479f"
+          }
+        },
+        {
+          "client_id": "676271537781-bvf1er9429t6e04l5p7ldos0h8kvdqdf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtiuM_QUL6bOCoicW558aq8fkTCoshRpw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "676271537781-bvf1er9429t6e04l5p7ldos0h8kvdqdf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
