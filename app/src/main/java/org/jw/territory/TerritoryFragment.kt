@@ -6,11 +6,19 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_territory.view.*
 import org.jw.territory.adapter.TerritoryAdapter
+import org.jw.territory.data.Territory
+import java.util.HashMap
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -50,6 +58,46 @@ class TerritoryFragment : Fragment() {
             recyclerViewTeritory.layoutManager = llm
             recyclerViewTeritory.itemAnimator = DefaultItemAnimator()
             recyclerViewTeritory.adapter = adapter
+
+            val database = FirebaseDatabase.getInstance()
+            val myRef = database.getReference("territory")
+
+//        myRef.setValue("Território 01")
+
+//            list = mutableListOf()
+
+
+
+            myRef.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    var items = dataSnapshot.getValue(true) as HashMap<*, *>
+
+
+
+                    items.forEach {
+
+                        val territory = Territory()
+                        territory.uid = it.key as String?
+
+                        Log.d(TAG, "Value is: ${it.key}}")
+                        val l = it.value as HashMap<*, *>
+                        l.forEach{
+                            Log.d(TAG, "Value is: ${it.key}}")
+                        }
+
+
+
+//                        list.add(territory)
+                    }
+
+//                Log.d(TAG, "Value is: " + value!!)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Failed to read value
+                    Log.w(TAG, "Failed to read value.", error.toException())
+                }
+            })
 
         }
     }
