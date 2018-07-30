@@ -25,16 +25,7 @@ class ViewModelTerritory {
             myRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                    val list = mutableListOf<Territory>()
-
-                    for (territorySnapshot in dataSnapshot.children) {
-                        val territory = Territory()
-                        territory.uid = territorySnapshot.key
-                        territory.name = territorySnapshot.child("name").value as String?
-                        territory.latitude = territorySnapshot.child("latitude").value as Double?
-                        territory.longitude = territorySnapshot.child("longitude").value as Double?
-                        list.add(territory)
-                    }
+                    val list = populateTerritory(dataSnapshot = dataSnapshot)
 
                     list.forEach {
 
@@ -59,26 +50,7 @@ class ViewModelTerritory {
             myRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                    val list = mutableListOf<Territory>()
-
-                    for (territorySnapshot in dataSnapshot.children) {
-                        val territory = Territory()
-                        territory.uid = territorySnapshot.key
-                        territory.name = territorySnapshot.child("name").value as String?
-
-//                        territorySnapshot.child("location").apply {
-//                            val location = Location(
-//                                    latitude = child("latitude").value as Float?,
-//                                    longitude = child("longitude").value as Float?,
-//                                    street = child("street").value as String?,
-//                                    number = child("number").value as Int?,
-//                                    district = child("district").value as String
-//                            )
-//                            territory.location = location
-//                        }
-
-                        list.add(territory)
-                    }
+                    val list = populateTerritory(dataSnapshot = dataSnapshot)
                     adapter.filter(list)
 
                 }
@@ -90,6 +62,35 @@ class ViewModelTerritory {
             })
         }
 
+
+        private fun populateTerritory(dataSnapshot: DataSnapshot) : MutableList<Territory> {
+
+            val list = mutableListOf<Territory>()
+
+            for (territorySnapshot in dataSnapshot.children) {
+                val territory = Territory()
+                territory.uid = territorySnapshot.key
+                territory.name = territorySnapshot.child("name").value as String?
+                territory.latitude = territorySnapshot.child("latitude").value as Double?
+                territory.longitude = territorySnapshot.child("longitude").value as Double?
+
+//                territorySnapshot.child("location").apply {
+                    ////                            val location = Location(
+////                                    latitude = child("latitude").value as Float?,
+////                                    longitude = child("longitude").value as Float?,
+////                                    street = child("street").value as String?,
+////                                    number = child("number").value as Int?,
+////                                    district = child("district").value as String
+////                            )
+////                            territory.location = location
+////                        }
+
+                list.add(territory)
+            }
+
+            return list
+
+        }
 
     }
 
