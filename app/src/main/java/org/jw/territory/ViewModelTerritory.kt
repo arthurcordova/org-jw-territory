@@ -63,7 +63,7 @@ class ViewModelTerritory {
         }
 
 
-        private fun populateTerritory(dataSnapshot: DataSnapshot) : MutableList<Territory> {
+        private fun populateTerritory(dataSnapshot: DataSnapshot): MutableList<Territory> {
 
             val list = mutableListOf<Territory>()
 
@@ -73,9 +73,13 @@ class ViewModelTerritory {
                 territory.name = territorySnapshot.child("name").value as String?
                 territory.latitude = territorySnapshot.child("latitude").value as Double?
                 territory.longitude = territorySnapshot.child("longitude").value as Double?
+                territory.zipcode = territorySnapshot.child("zipcode").value as String?
+                territory.address = territorySnapshot.child("address").value as String?
+                territory.status = wrapperStatus(territorySnapshot.child("status").value as String?)
+
 
 //                territorySnapshot.child("location").apply {
-                    ////                            val location = Location(
+                ////                            val location = Location(
 ////                                    latitude = child("latitude").value as Float?,
 ////                                    longitude = child("longitude").value as Float?,
 ////                                    street = child("street").value as String?,
@@ -92,6 +96,25 @@ class ViewModelTerritory {
 
         }
 
-    }
+        private fun wrapperStatus(code: String?): TerritoryStatus? {
+            code.let {
+                when (it) {
+                    "L" -> {
+                        return TerritoryStatus.ENABLE
+                    }
+                    "O" -> {
+                        return TerritoryStatus.DISABLE
+                    }
+                }
+                return@let
+            }
+            return null
+        }
 
+    }
+}
+
+enum class TerritoryStatus(val code: String, val description: String) {
+    ENABLE("L", "Disponível"),
+    DISABLE("O", "Ocupado")
 }

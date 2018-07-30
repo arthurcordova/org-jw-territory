@@ -27,6 +27,8 @@ class TerritoryAdapter(val list: MutableList<Territory>,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val territory = list[position]
         holder?.labelName.text = territory.name
+        holder?.labelAddress.text = "${territory.address} \nCEP: ${territory.zipcode}"
+        holder?.labelStatus.text = territory.status?.description
 //        val imageBitmap = list[position]
 
 //        holder?.imageView?.setImageBitmap(imageBitmap)
@@ -48,6 +50,8 @@ class TerritoryAdapter(val list: MutableList<Territory>,
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         var labelName: TextView = view.labelName
+        var labelAddress: TextView = view.labelAddress
+        var labelStatus: TextView = view.labeStatus
 //        var imageClose: ImageView = view.imageClose
 
     }
