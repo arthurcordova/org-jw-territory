@@ -49,10 +49,15 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
         mMap = googleMap
 
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val jwAguaVerde = LatLng(-26.911431, -49.119603)
+
+        mMap.addMarker(MarkerOptions().position(jwAguaVerde).title("JW Agua Verde"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(jwAguaVerde))
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(jwAguaVerde, 16.0f))
+
+        ViewModelTerritory.territoriesForMapsView(googleMap = mMap)
     }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {

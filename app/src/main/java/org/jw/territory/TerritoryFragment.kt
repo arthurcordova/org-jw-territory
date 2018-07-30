@@ -17,6 +17,7 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_territory.view.*
 import org.jw.territory.adapter.TerritoryAdapter
+import org.jw.territory.data.Location
 import org.jw.territory.data.Territory
 import java.util.HashMap
 
@@ -44,60 +45,22 @@ class TerritoryFragment : Fragment() {
             val llm = LinearLayoutManager(context)
             llm.orientation = LinearLayoutManager.VERTICAL
 
-            val list = mutableListOf<String>()
-            list.add(" ")
-            list.add(" ")
-            list.add(" ")
 
-            val adapter = TerritoryAdapter(list, { position: Int ->
+
+            val adapter = TerritoryAdapter(mutableListOf(), { position: Int ->
 
 //                listContract.removeAt(position)
 //                adapterContract.filter(listContract)
 
+
             })
+
             recyclerViewTeritory.layoutManager = llm
             recyclerViewTeritory.itemAnimator = DefaultItemAnimator()
             recyclerViewTeritory.adapter = adapter
 
-            val database = FirebaseDatabase.getInstance()
-            val myRef = database.getReference("territory")
 
-//        myRef.setValue("Território 01")
-
-//            list = mutableListOf()
-
-
-
-            myRef.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    var items = dataSnapshot.getValue(true) as HashMap<*, *>
-
-
-
-                    items.forEach {
-
-                        val territory = Territory()
-                        territory.uid = it.key as String?
-
-                        Log.d(TAG, "Value is: ${it.key}}")
-                        val l = it.value as HashMap<*, *>
-                        l.forEach{
-                            Log.d(TAG, "Value is: ${it.key}}")
-                        }
-
-
-
-//                        list.add(territory)
-                    }
-
-//                Log.d(TAG, "Value is: " + value!!)
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    // Failed to read value
-                    Log.w(TAG, "Failed to read value.", error.toException())
-                }
-            })
+            ViewModelTerritory.territoriesForListView(adapter = adapter)
 
         }
     }

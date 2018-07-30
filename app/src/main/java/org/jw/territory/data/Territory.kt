@@ -3,8 +3,10 @@ package org.jw.territory.data
 data class Territory(
 
         var uid: String?,
-        var location: Location?
+        var name: String?,
+        var latitude: Double?,
+        var longitude: Double?
 
 ) {
-    constructor() : this(null, null)
+    constructor() : this(null, null, null, null)
 }
